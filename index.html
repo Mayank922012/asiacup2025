@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asia Cup 2023 - Live Scores & Stats</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        
+        .cricket-pitch {
+            background: linear-gradient(to bottom, #22c55e 0%, #16a34a 100%);
+            border: 2px solid #a3e635;
+            position: relative;
+        }
+        
+        .pitch-line {
+            background-color: white;
+            position: absolute;
+            opacity: 0.8;
+        }
+        
+        .crease {
+            border: 1px solid white;
+            position: absolute;
+        }
+        
+        .stumps {
+            background-color: #f59e0b;
+            position: absolute;
+            width: 4px;
+        }
+        
+        .team-flag {
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .live-indicator {
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .player-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .player-card:hover {
+            background: rgba(30, 41, 59, 1);
+            transform: translateY(-3px);
+        }
+        
+        .score-progress {
+            background: linear-gradient(to right, #3b82f6 0%, #6366f1 100%);
+            height: 6px;
+            border-radius: 3px;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-slate-900 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <img src="https://placeholder-image-service.onrender.com/image/40x40?prompt=Asia%20Cup%20Cricket%20Tournament%20Logo&id=asia-cup-logo" alt="Asia Cup Tournament Logo" class="h-10 w-10 rounded">
+                    <h1 class="text-xl font-bold text-white">Asia Cup 2023</h1>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-item text-blue-400 font-medium">Live Scores</a>
+                    <a href="#" class="nav-item text-slate-300 hover:text-white">Fixtures</a>
+                    <a href="#" class="nav-item text-slate-300 hover:text-white">Standings</a>
+                    <a href="#" class="nav-item text-slate-300 hover:text-white">Stats</a>
+                    <a href="#" class="nav-item text-slate-300 hover:text-white">News</a>
+                </nav>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition">
+                        <i class="fas fa-bell mr-2"></i>Notify Me
+                    </button>
+                    <button class="text-slate-300 hover:text-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+<header>
+Made by Mayank
+  </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- Live Match Section -->
+        <section class="mb-12">
+            <div class="flex items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Live Match</h2>
+                <div class="ml-4 flex items-center bg-red-600 px-3 py-1 rounded-full">
+                    <span class="live-indicator h-2 w-2 bg-white rounded-full mr-2"></span>
+                    <span class="text-sm font-medium">LIVE</span>
+                </div>
+            </div>
+            
+            <div class="bg-slate-800 rounded-xl overflow-hidden shadow-xl">
+                <div class="p-6 border-b border-slate-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="text-slate-400">Asia Cup • Final • R. Premadasa Stadium, Colombo</div>
+                        <div class="text-sm bg-slate-700 px-3 py-1 rounded">Day 1 • 38th Over</div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <!-- Team 1 -->
+                        <div class="text-center">
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=India%20Cricket%20Team%20Flag&id=india-flag" alt="India Cricket Team Flag" class="team-flag h-16 w-16">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">India</h3>
+                            <div class="text-3xl font-bold text-white">240/4</div>
+                            <div class="text-slate-400 mt-2">38.0 Overs</div>
+                        </div>
+                        
+                        <!-- Match Status -->
+                        <div class="text-center">
+                            <div class="text-lg text-slate-300 mb-2">India won the toss & elected to bat</div>
+                            <div class="text-2xl font-bold text-green-500 mb-4">Current RR: 6.32</div>
+                            <div class="inline-block bg-slate-700 text-slate-300 px-4 py-2 rounded-lg">
+                                <span class="font-medium">Last Over:</span> 1 4 6 0 W 1
+                            </div>
+                        </div>
+                        
+                        <!-- Team 2 -->
+                        <div class="text-center">
+                            <div class="flex justify-center mb-4">
+                                <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=Sri%20Lanka%20Cricket%20Team%20Flag&id=sri-lanka-flag" alt="Sri Lanka Cricket Team Flag" class="team-flag h-16 w-16">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2">Sri Lanka</h3>
+                            <div class="text-3xl font-bold text-white">Yet to Bat</div>
+                            <div class="text-slate-400 mt-2">Target: 241</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900 p-4">
+                    <div class="flex justify-between items-center">
+                        <div class="text-slate-300">
+                            <span class="font-medium">Partnership:</span> 42(28)
+                        </div>
+                        <div class="text-slate-300">
+                            <span class="font-medium">Last Wicket:</span> Kohli 57(44)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-12">
+            <!-- Current Batters -->
+            <div class="stat-card p-6">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-user mr-2 text-blue-400"></i>Current Batters
+                </h3>
+                
+                <div class="space-y-4">
+                    <div class="player-card p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-bold">KL</span>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-white">K.L. Rahul</div>
+                                    <div class="text-sm text-slate-400">72 (62)</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-green-500 font-medium">116.1 SR</div>
+                                <div class="text-sm text-slate-400">4s: 6, 6s: 3</div>
+                            </div>
+                        </div>
+                        <div class="score-progress" style="width: 70%;"></div>
+                    </div>
+                    
+                    <div class="player-card p-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
+                                    <span class="font-bold">HP</span>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-white">H. Pandya</div>
+                                    <div class="text-sm text-slate-400">28 (19)</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-green-500 font-medium">147.4 SR</div>
+                                <div class="text-sm text-slate-400">4s: 2, 6s: 2</div>
+                            </div>
+                        </div>
+                        <div class="score-progress" style="width: 30%;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bowling -->
+            <div class="stat-card p-6">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-baseball-ball mr-2 text-blue-400"></i>Current Bowler
+                </h3>
+                
+                <div class="player-card p-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center">
+                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
+                                <span class="font-bold">DSh</span>
+                            </div>
+                            <div>
+                                <div class="font-medium text-white">D. Shanaka</div>
+                                <div class="text-sm text-slate-400">7.2-0-48-1</div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-red-500 font-medium">6.55 Econ</div>
+                            <div class="text-sm text-slate-400">Current Over: 1 4 6</div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between text-sm text-slate-400 mt-2">
+                        <span>0's: 12</span>
+                        <span>4's: 5</span>
+                        <span>6's: 3</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="text-sm font-medium text-slate-300 mb-2">Recent Overs</h4>
+                    <div class="flex space-x-2">
+                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">7.3</div>
+                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">8.2</div>
+                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">9.6</div>
+                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">10.4</div>
+                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">11.3</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Required Run Rate -->
+            <div class="stat-card p-6">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                    <i class="fas fa-chart-line mr-2 text-blue-400"></i>Run Rate Chart
+                </h3>
+                
+                <div class="bg-slate-700 rounded-lg p-4 mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="text-slate-300">Current RR</div>
+                        <div class="text-green-500 font-medium">6.32</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="text-slate-300">Required RR</div>
+                        <div class="text-red-500 font-medium">7.85</div>
+                    </div>
+                </div>
+                
+                <canvas id="runRateChart" height="150"></canvas>
+            </div>
+        </div>
+
+        <!-- Mini Cricket Pitch -->
+        <div class="stat-card p-6 mb-12">
+            <h3 class="text-lg font-bold text-white mb-4 flex items-center">
+                <i class="fas fa-baseball-ball mr-2 text-blue-400"></i>Pitch Map
+            </h3>
+            
+            <div class="cricket-pitch mx-auto relative h-64 w-full max-w-2xl rounded-lg">
+                <!-- Pitch Lines -->
+                <div class="pitch-line w-full h-1 top-1/2 transform -translate-y-1/2"></div>
+                <div class="pitch-line h-full w-1 left-1/2 transform -translate-x-1/2"></div>
+                
+                <!-- Creases -->
+                <div class="crease w-24 h-6 top-1/2 transform -translate-y-1/2 -translate-x-24 left-1/2"></div>
+                <div class="crease w-24 h-6 top-1/2 transform -translate-y-1/2 translate-x-24 left-1/2"></div>
+                
+                <!-- Stumps -->
+                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-2"></div>
+                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2"></div>
+                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2 translate-x-2"></div>
+                
+                <!-- Ball markers -->
+                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 40%; left: 45%;"></div>
+                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 35%; left: 55%;"></div>
+                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 60%; left: 50%;"></div>
+            </div>
+            
+            <div class="mt-4 text-center text-slate-400 text-sm">
+                Ball-by-ball tracking showing recent deliveries
+            </div>
+        </div>
+
+        <!-- Tournament Standings -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-white mb-6">Tournament Standings</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto">
+                    <thead class="bg-slate-800 text-left">
+                        <tr>
+                            <th class="px-6 py-3 text-slate-300">Team</th>
+                            <th class="px-6 py-3 text-slate-300">P</th>
+                            <th class="px-6 py-3 text-slate-300">W</th>
+                            <th class="px-6 py-3 text-slate-300">L</th>
+                            <th class="px-6 py-3 text-slate-300">NR</th>
+                            <th class="px-6 py-3 text-slate-300">Pts</th>
+                            <th class="px-6 py-3 text-slate-300">NRR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-slate-700 bg-slate-800/50">
+                            <td class="px-6 py-4 flex items-center">
+                                <img src="https://placeholder-image-service.onrender.com/image/30x30
