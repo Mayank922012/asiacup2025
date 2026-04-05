@@ -1,0 +1,32 @@
+(node:1748) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+=== BROWSER STATE ===
+URL: https://super.myninja.ai/404
+Title: NinjaTech AI
+Result: Navigated to https://super.myninja.ai/404 (title: NinjaTech AI, status: 404)
+
+Interactive elements (1):
+  [0] a "Return Home" -> /
+
+Accessibility tree:
+Page text: 404 Error Page not found The page you're looking for doesn't exist or has been moved. Return Home
+
+Errors: Console Errors (2):
+   • Failed to load resource: the server responded with a status of 404 () (https://super.myninja.ai/404:0)
+   • Failed to load resource: the server responded with a status of 400 () (https://aplo-evnt.com/api/v1/intent_pixel/track_request?app_id=67b778d557120c001136052d:0)
+Network Errors (9):
+   • GET https://super.myninja.ai/404 → 404 
+   • POST https://www.google-analytics.com/g/collect?v=2&tid=G-6ETJFB3PT3&gtm=45je6411v9218185669za200zd9218185669&_p=1775395690497&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=580903339.1775395677&ul=en-us&sr=1600x900&uaa=x86&uab=64&uafvl=Chromium%3B145.0.7632.6%7CNot%253AA-Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&_s=1&tag_exp=0~115616986~115938465~115938469~116991817~118131810~118328142&sid=1775395676&sct=1&seg=1&dl=https%3A%2F%2Fsuper.myninja.ai%2F404&dt=NinjaTech%20AI&en=page_view&_ee=1&tfd=931 → FAILED: net::ERR_ABORTED
+   • POST https://www.google-analytics.com/g/collect?v=2&tid=G-7T7RSRG4EW&gtm=45je6411v9218185669za200zd9218185669&_p=1775395690497&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=580903339.1775395677&ul=en-us&sr=1600x900&uaa=x86&uab=64&uafvl=Chromium%3B145.0.7632.6%7CNot%253AA-Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAAQ&_s=1&tag_exp=0~115616986~115938465~115938469~116991817~118131810~118328142&sid=1775395676&sct=1&seg=1&dl=https%3A%2F%2Fsuper.myninja.ai%2F404&dt=NinjaTech%20AI&en=page_view&_ee=1&tfd=936 → FAILED: net::ERR_ABORTED
+   • POST https://www.google.com/rmkt/collect/16589830380/?random=1775395691395&cv=11&fst=1775395691395&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45je6411v9187014688z89138475267za20gzb9138475267zd9138475267xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~116991816~118131810&u_w=1600&u_h=900&url=https%3A%2F%2Fsuper.myninja.ai%2F404&frm=0&tiba=NinjaTech%20AI&hn=www.googleadservices.com&npa=0&us_privacy=1-N-&pscdl=noapi&auid=1837812512.1775395678&uaa=x86&uab=64&uafvl=Chromium%3B145.0.7632.6%7CNot%253AA-Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&data=event%3Dgtag.config&gcp=5 → FAILED: net::ERR_ABORTED
+   • POST https://analytics.google.com/g/collect?v=2&tid=G-8NW18Q4WF2&gtm=45je6411v9187014688z89138475267za20gzb9138475267zd9138475267&_p=1775395690497&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=580903339.1775395677&ecid=738760712&ul=en-us&sr=1600x900&uaa=x86&uab=64&uafvl=Chromium%3B145.0.7632.6%7CNot%253AA-Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&are=1&frm=0&pscdl=noapi&ec_mode=a&_eu=AAAAAGQ&_s=1&tag_exp=0~115938465~115938469~116991816~118131810&sid=1775395677&sct=1&seg=1&dl=https%3A%2F%2Fsuper.myninja.ai%2F404&dt=NinjaTech%20AI&en=page_view&tfd=1554 → FAILED: net::ERR_ABORTED
+   • POST https://www.google.com/ccm/collect?frm=0&en=page_view&dl=https%3A%2F%2Fsuper.myninja.ai%2F404&scrsrc=www.googletagmanager.com&rnd=493135993.1775395691&dt=NinjaTech%20AI&auid=1837812512.1775395678&navt=n&npa=0&us_privacy=1-N-&gtm=45je6411v9187014688z89138475267za20gzb9138475267zd9138475267xec&gcd=13l3l3l3l1l1&dma=0&tag_exp=0~115938465~115938469~116991816~118131810&apve=1&apvf=f&apvc=1&tids=AW-16589830380&tid=AW-16589830380&tft=1775395691431&tfd=1566 → FAILED: net::ERR_ABORTED
+   • POST https://analytics.google.com/g/collect?v=2&tid=G-8NW18Q4WF2&gtm=45je6411v9187014688z89138475267za20gzb9138475267zd9138475267&_p=1775395690497&gcd=13l3l3l3l1l1&npa=0&dma=0&cid=580903339.1775395677&ecid=738760712&ul=en-us&sr=1600x900&uaa=x86&uab=64&uafvl=Chromium%3B145.0.7632.6%7CNot%253AA-Brand%3B99.0.0.0&uamb=0&uam=&uap=Linux&uapv=&uaw=0&are=1&frm=0&pscdl=noapi&_eu=AAAAAGQ&_s=2&tag_exp=0~115938465~115938469~116991816~118131810&sid=1775395677&sct=1&seg=1&dl=https%3A%2F%2Fsuper.myninja.ai%2F404&dt=NinjaTech%20AI&en=GA4_Config&_et=5&tfd=1604 → FAILED: net::ERR_ABORTED
+   • POST https://px.ads.linkedin.com/wa/?medium=fetch&fmt=g → FAILED: net::ERR_ABORTED
+   • POST https://aplo-evnt.com/api/v1/intent_pixel/track_request?app_id=67b778d557120c001136052d → 400 
+Console Warnings (1):
+   • Error: Google tag G-6ETJFB3PT3 loaded before Consent Mode update. Please review and resolve Google Consent Mode sequencing.
+
+Screenshot: /workspace/.screenshots/step_001.png
+Use see-image to view: /workspace/.screenshots/step_001.png
+=== END ===

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TubeUpload — Upload to YouTube Instantly</title>
+  <meta name="description" content="The fastest, cleanest way to upload videos directly to YouTube. Drag, drop, and publish in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF0000'/><polygon points='38,28 75,50 38,72' fill='white'/></svg>" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<!-- Background -->
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">
+    <div class="icon">▶</div>
+    Tube<span>Upload</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#upload">Upload</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-ghost" onclick="openModal('login')">Sign In</button>
+    <button class="btn btn-primary" onclick="openModal('signup')">Get Started →</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      YouTube Uploader — No Bloat, Pure Speed
+    </div>
+    <h1>Upload Videos to<br /><span class="highlight">YouTube</span><br />in Seconds</h1>
+    <p class="hero-sub">
+      Drag, drop, fill details, and publish. The cleanest YouTube upload experience — 
+      with scheduling, thumbnails, tags, and visibility controls all in one place.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-large" onclick="scrollToUpload()">
+        ▶ Start Uploading Free
+      </button>
+      <button class="btn btn-ghost btn-large" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">
+        See How It Works
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">50GB</span>
+        <span class="stat-label">Max File Size</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4K</span>
+        <span class="stat-label">Resolution Support</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Free to Start</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Video Formats</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section fade-in" id="how">
+  <div class="section-tag">Simple Process</div>
+  <h2 class="section-title">Four Steps to Published</h2>
+  <p class="section-sub">No learning curve. No clutter. Just upload and go.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">Step 01</div>
+      <span class="step-emoji">🔗</span>
+      <div class="step-title">Connect YouTube</div>
+      <p class="step-desc">Sign in with Google and authorize TubeUpload to publish to your YouTube channel via YouTube Data API.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 02</div>
+      <span class="step-emoji">🎬</span>
+      <div class="step-title">Drop Your Video</div>
+      <p class="step-desc">Drag & drop or browse for your video. Supports MP4, MOV, AVI, MKV, WebM, WMV, FLV, and more.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 03</div>
+      <span class="step-emoji">✏️</span>
+      <div class="step-title">Fill Details</div>
+      <p class="step-desc">Add title, description, tags, thumbnail, category, and choose visibility — public, unlisted, or private.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 04</div>
+      <span class="step-emoji">🚀</span>
+      <div class="step-title">Publish or Schedule</div>
+      <p class="step-desc">Hit upload and go live immediately, or schedule your video to publish at the perfect time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UPLOAD SECTION ===== -->
+<section class="upload-section fade-in" id="upload">
+  <div class="section-tag">Upload Studio</div>
+  <h2 class="section-title">Upload Your Video</h2>
+  <p class="section-sub">Connect your YouTube channel and start uploading instantly.</p>
+
+  <!-- Channel Connect Banner (shown when not connected) -->
+  <div id="connectBanner" class="connect-card" style="margin-bottom: 32px;">
+    <div style="font-size: 3rem; margin-bottom: 16px;">📺</div>
+    <h2>Connect Your YouTube Channel</h2>
+    <p>Sign in with Google to link your YouTube channel and start uploading videos directly.</p>
+    <div class="connect-options">
+      <button class="connect-opt-btn primary" onclick="connectYouTube()">
+        <svg class="google-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Connect with Google
+      </button>
+      <button class="connect-opt-btn" onclick="openModal('signup')">
+        Create Account First
+      </button>
+    </div>
+  </div>
+
+  <!-- Connected Channel Bar (hidden by default) -->
+  <div id="channelBar" class="channel-connect" style="display:none;">
+    <div class="channel-avatar" id="channelAvatarLetter">Y</div>
+    <div class="channel-info">
+      <div class="channel-name" id="channelName">My YouTube Channel</div>
+      <div class="channel-status">Connected & Ready</div>
+    </div>
+    <button class="channel-disconnect" onclick="disconnectChannel()">Disconnect</button>
+  </div>
+
+  <!-- Upload Card -->
+  <div class="upload-card" id="uploadCard">
+    <!-- Tabs -->
+    <div class="upload-tabs">
+      <button class="tab-btn active" onclick="switchTab('upload', this)">
+        ⬆ Upload Video
+      </button>
+      <button class="tab-btn" onclick="switchTab('url', this)">
+        🔗 From URL
+      </button>
+      <button class="tab-btn" onclick="switchTab('schedule', this)">
+        📅 Scheduled
+      </button>
+    </div>
+
+    <!-- ===== TAB: UPLOAD ===== -->
+    <div class="tab-panel active" id="tab-upload">
+
+      <!-- Drop Zone -->
+      <div class="drop-zone" id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" id="fileInput" accept="video/*" onchange="handleFileSelect(event)" />
+        <div class="drop-icon">🎬</div>
+        <div class="drop-title">Drop your video here</div>
+        <p class="drop-sub">or click to browse files — up to 50GB</p>
+        <div class="drop-formats">
+          <span class="format-badge">MP4</span>
+          <span class="format-badge">MOV</span>
+          <span class="format-badge">AVI</span>
+          <span class="format-badge">MKV</span>
+          <span class="format-badge">WebM</span>
+          <span class="format-badge">WMV</span>
+          <span class="format-badge">FLV</span>
+          <span class="format-badge">3GP</span>
+        </div>
+      </div>
+
+      <!-- Selected File Preview -->
+      <div class="file-selected" id="fileSelected">
+        <div class="file-thumb" id="fileThumb">🎬</div>
+        <div class="file-info">
+          <div class="file-name" id="fileName">video.mp4</div>
+          <div class="file-size" id="fileSize">0 MB</div>
+        </div>
+        <button class="file-remove" onclick="removeFile()" title="Remove file">✕</button>
+      </div>
+
+      <!-- Video Details Form -->
+      <div class="video-form" id="videoForm">
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Video Title <span>*</span></label>
+            <input type="text" class="form-input" id="videoTitle" placeholder="Enter an engaging title..." maxlength="100" oninput="updateCharCount(this, 'titleCount', 100)" />
+            <div class="char-count"><span id="titleCount">0</span>/100</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="videoDesc" placeholder="Describe your video... (supports links, hashtags)" maxlength="5000" rows="4" oninput="updateCharCount(this, 'descCount', 5000)"></textarea>
+            <div class="char-count"><span id="descCount">0</span>/5000</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="videoCategory">
+              <option value="22">People & Blogs</option>
+              <option value="1">Film & Animation</option>
+              <option value="2">Autos & Vehicles</option>
+              <option value="10">Music</option>
+              <option value="15">Pets & Animals</option>
+              <option value="17">Sports</option>
+              <option value="19">Travel & Events</option>
+              <option value="20">Gaming</option>
+              <option value="23">Comedy</option>
+              <option value="24">Entertainment</option>
+              <option value="25">News & Politics</option>
+              <option value="26">Howto & Style</option>
+              <option value="27">Education</option>
+              <option value="28">Science & Technology</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Language</label>
+            <select class="form-select" id="videoLanguage">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="pt">Portuguese</option>
+              <option value="ja">Japanese</option>
+              <option value="ko">Korean</option>
+              <option value="zh">Chinese</option>
+              <option value="ar">Arabic</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Tags</label>
+            <div class="tags-input-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()">
+              <input type="text" id="tagInput" placeholder="Type a tag and press Enter..." onkeydown="handleTagInput(event)" />
+            </div>
+            <div class="char-count">Press Enter or comma to add tags</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Visibility</label>
+            <div class="visibility-options">
+              <button class="vis-btn active" onclick="setVisibility('public', this)">🌍 Public</button>
+              <button class="vis-btn" onclick="setVisibility('unlisted', this)">🔗 Unlisted</button>
+              <button class="vis-btn" onclick="setVisibility('private', this)">🔒 Private</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Custom Thumbnail <span style="color:var(--gray); font-weight:400;">(optional, JPG/PNG max 2MB)</span></label>
+            <div class="thumb-upload" id="thumbUpload">
+              <input type="file" id="thumbInput" accept="image/jpeg,image/png,image/webp" onchange="handleThumbSelect(event)" />
+              <span style="font-size:1.5rem;">🖼️</span>
+              <div class="thumb-upload-text">
+                <strong id="thumbText">Upload Thumbnail</strong>
+                Click to browse or drag image here
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Made for Kids -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Audience</label>
+            <select class="form-select" id="madeForKids">
+              <option value="false">Not made for kids</option>
+              <option value="true">Made for kids</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">License</label>
+            <select class="form-select" id="videoLicense">
+              <option value="youtube">Standard YouTube License</option>
+              <option value="creativeCommon">Creative Commons</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-header">
+            <span class="progress-status" id="progressStatus">Uploading…</span>
+            <span class="progress-pct" id="progressPct">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-steps">
+            <div class="progress-step active" id="step-auth">
+              <div class="progress-step-dot"></div> Authenticating
+            </div>
+            <div class="progress-step" id="step-upload">
+              <div class="progress-step-dot"></div> Uploading
+            </div>
+            <div class="progress-step" id="step-process">
+              <div class="progress-step-dot"></div> Processing
+            </div>
+            <div class="progress-step" id="step-publish">
+              <div class="progress-step-dot"></div> Publishing
+            </div>
+          </div>
+        </div>
+
+        <!-- Success State -->
+        <div class="upload-success" id="uploadSuccess">
+          <div class="success-icon">✅</div>
+          <div class="success-title">Video Published!</div>
+          <p class="success-sub">Your video is now live on YouTube and processing for all qualities.</p>
+          <a class="success-link" id="successLink" href="#" target="_blank">
+            ▶ View on YouTube →
+          </a>
+          <button class="btn btn-ghost" onclick="resetUpload()" style="margin-top:8px;">Upload Another Video</button>
+        </div>
+
+        <!-- Submit -->
+        <div class="upload-submit-area" id="submitArea">
+          <div class="upload-note">
+            🔒 Uploads go directly to YouTube via their official API
+          </div>
+          <button class="btn-upload" id="uploadBtn" onclick="startUpload()" disabled>
+            ⬆ Upload to YouTube
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: FROM URL ===== -->
+    <div class="tab-panel" id="tab-url">
+      <div style="padding: 12px 0;">
+        <p style="color: var(--gray-light); font-size: 0.9rem; margin-bottom: 24px;">
+          Paste a direct video URL (e.g. from your server, Dropbox, Google Drive) and we'll fetch and upload it to YouTube.
+        </p>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Video URL <span>*</span></label>
+          <input type="url" class="form-input" id="videoUrlInput" placeholder="https://example.com/video.mp4" oninput="validateUrl(this)" />
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Video Title <span>*</span></label>
+          <input type="text" class="form-input" id="urlVideoTitle" placeholder="My Awesome Video" />
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="urlVideoDesc" placeholder="Video description..."></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 28px;">
+          <label class="form-label">Visibility</label>
+          <div class="visibility-options">
+            <button class="vis-btn active" onclick="setVisibility('public', this, 'url')">🌍 Public</button>
+            <button class="vis-btn" onclick="setVisibility('unlisted', this, 'url')">🔗 Unlisted</button>
+            <button class="vis-btn" onclick="setVisibility('private', this, 'url')">🔒 Private</button>
+          </div>
+        </div>
+        <div class="upload-submit-area">
+          <div class="upload-note">🔒 Fetches and uploads via YouTube API</div>
+          <button class="btn-upload" onclick="startUrlUpload()">⬆ Fetch & Upload</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: SCHEDULE ===== -->
+    <div class="tab-panel" id="tab-schedule">
+      <div style="padding: 12px 0;">
+        <p style="color: var(--gray-light); font-size: 0.9rem; margin-bottom: 24px;">
+          Schedule your video uploads for the perfect time. Drop a video and choose when it goes live.
+        </p>
+        <div class="drop-zone" id="dropZoneSchedule" style="margin-bottom: 20px;" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSchedule(event)">
+          <input type="file" id="fileInputSchedule" accept="video/*" onchange="handleScheduleFileSelect(event)" />
+          <div class="drop-icon">📅</div>
+          <div class="drop-title">Drop video to schedule</div>
+          <p class="drop-sub">or click to browse files</p>
+        </div>
+        <div class="file-selected" id="fileSelectedSchedule">
+          <div class="file-thumb">🎬</div>
+          <div class="file-info">
+            <div class="file-name" id="fileNameSchedule">video.mp4</div>
+            <div class="file-size" id="fileSizeSchedule">0 MB</div>
+          </div>
+          <button class="file-remove" onclick="removeScheduleFile()">✕</button>
+        </div>
+        <div class="form-group" style="margin-bottom: 20px; margin-top: 20px;">
+          <label class="form-label">Video Title <span>*</span></label>
+          <input type="text" class="form-input" id="scheduleTitle" placeholder="Scheduled Video Title" />
+        </div>
+        <div class="schedule-row" style="margin-bottom: 20px;">
+          <div class="form-group">
+            <label class="form-label">Publish Date <span>*</span></label>
+            <input type="date" class="form-input" id="scheduleDate" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Publish Time <span>*</span></label>
+            <input type="time" class="form-input" id="scheduleTime" />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Timezone</label>
+          <select class="form-select" id="scheduleTimezone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">Eastern Time (ET)</option>
+            <option value="America/Chicago">Central Time (CT)</option>
+            <option value="America/Denver">Mountain Time (MT)</option>
+            <option value="America/Los_Angeles">Pacific Time (PT)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Europe/Paris">Paris (CET)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="Asia/Dubai">Dubai (GST)</option>
+          </select>
+        </div>
+        <div class="upload-submit-area">
+          <div class="upload-note">📅 Will publish at the selected date & time</div>
+          <button class="btn-upload" onclick="scheduleUpload()">📅 Schedule Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section fade-in" id="features">
+  <div class="section-tag">Why TubeUpload</div>
+  <h2 class="section-title">Everything You Need</h2>
+  <p class="section-sub">Purpose-built for creators who just want to upload — fast, clean, and reliable.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔑</div>
+      <div class="feature-title">OAuth 2.0 Secure Auth</div>
+      <p class="feature-desc">Connect your YouTube channel securely via Google OAuth 2.0. We never store your password or credentials.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Resumable Uploads</div>
+      <p class="feature-desc">Upload large files reliably with YouTube's resumable upload API. Network drops? We pick up right where you left off.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Smart Scheduling</div>
+      <p class="feature-desc">Schedule your video to go public at exactly the right time. Set date, time, and timezone for peak audience reach.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🖼️</div>
+      <div class="feature-title">Custom Thumbnails</div>
+      <p class="feature-desc">Upload custom thumbnails right from the uploader. Stand out in search results and suggested videos.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏷️</div>
+      <div class="feature-title">Tags & Metadata</div>
+      <p class="feature-desc">Add titles, descriptions, categories, tags, language, and license info — all the metadata YouTube needs for discovery.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👁️</div>
+      <div class="feature-title">Visibility Controls</div>
+      <p class="feature-desc">Choose Public, Unlisted, or Private before uploading. Change anytime directly from YouTube Studio.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <div class="feature-title">All Major Formats</div>
+      <p class="feature-desc">Supports MP4, MOV, AVI, MKV, WebM, WMV, FLV, 3GP, and more — up to 50GB per file, up to 4K resolution.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Real-Time Progress</div>
+      <p class="feature-desc">Track upload progress in real time with step-by-step status from authentication to publishing.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <div class="feature-title">URL Import</div>
+      <p class="feature-desc">Have a video hosted online? Paste the URL and we'll fetch it and upload it to YouTube — no downloading required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTH MODAL ===== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">
+      <div class="icon">▶</div>
+      Tube<span style="color:var(--red)">Upload</span>
+    </div>
+    <h2 id="modalTitle">Create your account</h2>
+    <p class="modal-sub" id="modalSub">Join thousands of creators uploading smarter.</p>
+
+    <!-- Google Sign-In -->
+    <button class="google-btn" onclick="handleGoogleAuth()">
+      <svg class="google-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google (YouTube Access)
+    </button>
+
+    <div class="divider">or with email</div>
+
+    <div class="modal-form">
+      <input type="email" class="modal-input" placeholder="Email address" id="authEmail" />
+      <input type="password" class="modal-input" placeholder="Password" id="authPassword" />
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 14px;" id="authSubmitBtn" onclick="handleEmailAuth()">
+        Create Account
+      </button>
+    </div>
+
+    <div class="modal-footer" id="modalFooter">
+      Already have an account? <a href="#" onclick="switchAuthMode()">Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom: 14px;">
+        <div class="icon" style="width:30px;height:30px;font-size:0.8rem;">▶</div>
+        Tube<span>Upload</span>
+      </div>
+      <p>The fastest, cleanest way to upload videos directly to YouTube. Built for creators who value their time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#upload">Upload</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 TubeUpload. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

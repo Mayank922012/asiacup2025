@@ -1,0 +1,40 @@
+(node:1955) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+=== BROWSER STATE ===
+URL: http://localhost:3456/
+Title: TubeUpload — Upload to YouTube Instantly
+Result: Scrolled down 1200px
+
+Interactive elements (25):
+  [0] a "How It Works" -> #how
+  [1] a "Features" -> #features
+  [2] a "Upload" -> #upload
+  [3] button "Sign In"
+  [4] button "Get Started →"
+  [5] button "▶ Start Uploading Free"
+  [6] button "See How It Works"
+  [7] button "Connect with Google"
+  [8] button "Create Account First"
+  [10] button "⬆ Upload Video"
+  [11] button "🔗 From URL"
+  [12] button "📅 Scheduled"
+  [13] input type="file"
+  [50] a "Upload" -> #upload
+  [51] a "How It Works" -> #how
+  [52] a "Features" -> #features
+  [53] a "Documentation" -> #
+  [54] a "FAQ" -> #
+  [55] a "Contact" -> #
+  [56] a "Privacy Policy" -> #
+  [57] a "Terms of Service" -> #
+  [58] a "Cookie Policy" -> #
+  [59] a "Privacy" -> #
+  [60] a "Terms" -> #
+  [61] a "Contact" -> #
+
+Accessibility tree:
+Page text: ▶ Tube Upload How It Works Features Upload Sign In Get Started → YOUTUBE UPLOADER — NO BLOAT, PURE SPEED Upload Videos to YouTube in Seconds Drag, drop, fill details, and publish. The cleanest YouTube upload experience — with scheduling, thumbnails, tags, and visibility controls all in one place. ▶ Start Uploading Free See How It Works 50GB MAX FILE SIZE 4K RESOLUTION SUPPORT 100% FREE TO START 8+ VIDEO FORMATS SIMPLE PROCESS Four Steps to Published No learning curve. No clutter. Just upload and go. STEP 01 🔗 Connect YouTube Sign in with Google and authorize TubeUpload to publish to your YouTube channel via YouTube Data API. STEP 02 🎬 Drop Your Video Drag & drop or browse for your video. Supports MP4, MOV, AVI, MKV, WebM, WMV, FLV, and more. STEP 03 ✏️ Fill Details Add title, description, tags, thumbnail, category, and choose visibility — public, unlisted, or private. STEP 04 🚀 Publish or Schedule Hit upload and go live immediately, or schedule your video to publish at the perfect time. UPLOAD STUDIO Upload Your Video Connect your YouTube channel and start uploading instantly. 📺 Connect Your YouTube Channel Sign in with Google to link your YouTube channel and start uploading videos directly. Connect with Google Create Account First ⬆ Upload Video 🔗 From URL 📅 Scheduled 🎬 Drop your video here or click to browse files — up to 50GB MP4 MOV AVI MKV WebM WMV FLV 3GP WHY TUBEUPLOAD Everything You Need Purpose-built for creators who just want to upload — fast, clean, and reliable. 🔑 OAuth 2.0 Secure Auth Connect your YouTube channel securely via Google OAuth 2.0. We never store your password or credentials. ⚡ Resumable Uploads Upload large files reliably with YouTube's resumable upload API. Network drops? We pick up right where you left off. 📅 Smart Scheduling Schedule your video to go public at exactly the right time. Set date, time, and timezone for peak audience reach. 🖼️ Custom Thumbnails Upload custom thumbnails right from the uploader. Stand out in search results and
+
+Screenshot: /workspace/.screenshots/step_005.png
+Use see-image to view: /workspace/.screenshots/step_005.png
+=== END ===

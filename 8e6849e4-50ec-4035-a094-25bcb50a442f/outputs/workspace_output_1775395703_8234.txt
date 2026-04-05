@@ -1,0 +1,16 @@
+(node:1832) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+=== BROWSER STATE ===
+URL: https://super.myninja.ai/404
+Title: NinjaTech AI
+Result: Screenshot saved to /workspace/.screenshots/tubeupload_local.png
+
+Interactive elements (1):
+  [0] a "Return Home" -> /
+
+Accessibility tree:
+Page text: 404 Error Page not found The page you're looking for doesn't exist or has been moved. Return Home
+
+Screenshot: /workspace/.screenshots/step_002.png
+Use see-image to view: /workspace/.screenshots/step_002.png
+=== END ===

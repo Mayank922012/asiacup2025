@@ -1,0 +1,11 @@
+127.0.0.1 - - [05/Apr/2026 13:28:19] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Apr/2026 13:28:33] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [05/Apr/2026 13:28:33] "GET /assets/app.js HTTP/1.1" 200 -
+127.0.0.1 - - [05/Apr/2026 13:28:33] "GET /assets/style.css HTTP/1.1" 200 -
+127.0.0.1 - - [05/Apr/2026 13:29:59] "GET /?password=e3df360a-d130-4a64-9b48-cc844d828f11 HTTP/1.1" 200 -
+172.27.0.1 - - [05/Apr/2026 13:30:00] "GET /?hideControls=true&password=e3df360a-d130-4a64-9b48-cc844d828f11 HTTP/1.1" 200 -
+127.0.0.1 - - [05/Apr/2026 13:30:01] "GET /?password=e3df360a-d130-4a64-9b48-cc844d828f11 HTTP/1.1" 200 -
+172.27.0.1 - - [05/Apr/2026 13:30:01] "GET /assets/style.css HTTP/1.1" 200 -
+172.27.0.1 - - [05/Apr/2026 13:30:02] "GET /?hideControls=true&password=e3df360a-d130-4a64-9b48-cc844d828f11 HTTP/1.1" 200 -
+172.27.0.1 - - [05/Apr/2026 13:30:03] "GET /assets/app.js HTTP/1.1" 200 -
+172.27.0.1 - - [05/Apr/2026 13:30:04] "GET /assets/style.css HTTP/1.1" 200 -
