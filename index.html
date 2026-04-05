@@ -1,368 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asia Cup 2023 - Live Scores & Stats</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: #e2e8f0;
-            min-height: 100vh;
-        }
-        
-        .cricket-pitch {
-            background: linear-gradient(to bottom, #22c55e 0%, #16a34a 100%);
-            border: 2px solid #a3e635;
-            position: relative;
-        }
-        
-        .pitch-line {
-            background-color: white;
-            position: absolute;
-            opacity: 0.8;
-        }
-        
-        .crease {
-            border: 1px solid white;
-            position: absolute;
-        }
-        
-        .stumps {
-            background-color: #f59e0b;
-            position: absolute;
-            width: 4px;
-        }
-        
-        .team-flag {
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .live-indicator {
-            animation: pulse 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
-        .stat-card {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .player-card {
-            background: rgba(30, 41, 59, 0.8);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .player-card:hover {
-            background: rgba(30, 41, 59, 1);
-            transform: translateY(-3px);
-        }
-        
-        .score-progress {
-            background: linear-gradient(to right, #3b82f6 0%, #6366f1 100%);
-            height: 6px;
-            border-radius: 3px;
-        }
-        
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #3b82f6;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-item:hover::after {
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TubeUpload — Upload to YouTube Instantly</title>
+  <meta name="description" content="The fastest, cleanest way to upload videos directly to YouTube. Drag, drop, and publish in seconds." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF0000'/><polygon points='38,28 75,50 38,72' fill='white'/></svg>" />
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
-    <header class="bg-slate-900 shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <img src="https://placeholder-image-service.onrender.com/image/40x40?prompt=Asia%20Cup%20Cricket%20Tournament%20Logo&id=asia-cup-logo" alt="Asia Cup Tournament Logo" class="h-10 w-10 rounded">
-                    <h1 class="text-xl font-bold text-white">Asia Cup 2023</h1>
-                </div>
-                
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="nav-item text-blue-400 font-medium">Live Scores</a>
-                    <a href="#" class="nav-item text-slate-300 hover:text-white">Fixtures</a>
-                    <a href="#" class="nav-item text-slate-300 hover:text-white">Standings</a>
-                    <a href="#" class="nav-item text-slate-300 hover:text-white">Stats</a>
-                    <a href="#" class="nav-item text-slate-300 hover:text-white">News</a>
-                </nav>
-                
-                <div class="flex items-center space-x-4">
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition">
-                        <i class="fas fa-bell mr-2"></i>Notify Me
-                    </button>
-                    <button class="text-slate-300 hover:text-white">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
+
+<!-- Background -->
+<div class="bg-glow"></div>
+<div class="bg-grid"></div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <div class="nav-logo">
+    <div class="icon">▶</div>
+    Tube<span>Upload</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#upload">Upload</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn btn-ghost" onclick="openModal('login')">Sign In</button>
+    <button class="btn btn-primary" onclick="openModal('signup')">Get Started →</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      YouTube Uploader — No Bloat, Pure Speed
+    </div>
+    <h1>Upload Videos to<br /><span class="highlight">YouTube</span><br />in Seconds</h1>
+    <p class="hero-sub">
+      Drag, drop, fill details, and publish. The cleanest YouTube upload experience — 
+      with scheduling, thumbnails, tags, and visibility controls all in one place.
+    </p>
+    <div class="hero-actions">
+      <button class="btn btn-primary btn-large" onclick="scrollToUpload()">
+        ▶ Start Uploading Free
+      </button>
+      <button class="btn btn-ghost btn-large" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">
+        See How It Works
+      </button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">50GB</span>
+        <span class="stat-label">Max File Size</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4K</span>
+        <span class="stat-label">Resolution Support</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Free to Start</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-label">Video Formats</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section fade-in" id="how">
+  <div class="section-tag">Simple Process</div>
+  <h2 class="section-title">Four Steps to Published</h2>
+  <p class="section-sub">No learning curve. No clutter. Just upload and go.</p>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">Step 01</div>
+      <span class="step-emoji">🔗</span>
+      <div class="step-title">Connect YouTube</div>
+      <p class="step-desc">Sign in with Google and authorize TubeUpload to publish to your YouTube channel via YouTube Data API.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 02</div>
+      <span class="step-emoji">🎬</span>
+      <div class="step-title">Drop Your Video</div>
+      <p class="step-desc">Drag & drop or browse for your video. Supports MP4, MOV, AVI, MKV, WebM, WMV, FLV, and more.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 03</div>
+      <span class="step-emoji">✏️</span>
+      <div class="step-title">Fill Details</div>
+      <p class="step-desc">Add title, description, tags, thumbnail, category, and choose visibility — public, unlisted, or private.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">Step 04</div>
+      <span class="step-emoji">🚀</span>
+      <div class="step-title">Publish or Schedule</div>
+      <p class="step-desc">Hit upload and go live immediately, or schedule your video to publish at the perfect time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UPLOAD SECTION ===== -->
+<section class="upload-section fade-in" id="upload">
+  <div class="section-tag">Upload Studio</div>
+  <h2 class="section-title">Upload Your Video</h2>
+  <p class="section-sub">Connect your YouTube channel and start uploading instantly.</p>
+
+  <!-- Channel Connect Banner (shown when not connected) -->
+  <div id="connectBanner" class="connect-card" style="margin-bottom: 32px;">
+    <div style="font-size: 3rem; margin-bottom: 16px;">📺</div>
+    <h2>Connect Your YouTube Channel</h2>
+    <p>Sign in with Google to link your YouTube channel and start uploading videos directly.</p>
+    <div class="connect-options">
+      <button class="connect-opt-btn primary" onclick="connectYouTube()">
+        <svg class="google-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Connect with Google
+      </button>
+      <button class="connect-opt-btn" onclick="openModal('signup')">
+        Create Account First
+      </button>
+    </div>
+  </div>
+
+  <!-- Connected Channel Bar (hidden by default) -->
+  <div id="channelBar" class="channel-connect" style="display:none;">
+    <div class="channel-avatar" id="channelAvatarLetter">Y</div>
+    <div class="channel-info">
+      <div class="channel-name" id="channelName">My YouTube Channel</div>
+      <div class="channel-status">Connected & Ready</div>
+    </div>
+    <button class="channel-disconnect" onclick="disconnectChannel()">Disconnect</button>
+  </div>
+
+  <!-- Upload Card -->
+  <div class="upload-card" id="uploadCard">
+    <!-- Tabs -->
+    <div class="upload-tabs">
+      <button class="tab-btn active" onclick="switchTab('upload', this)">
+        ⬆ Upload Video
+      </button>
+      <button class="tab-btn" onclick="switchTab('url', this)">
+        🔗 From URL
+      </button>
+      <button class="tab-btn" onclick="switchTab('schedule', this)">
+        📅 Scheduled
+      </button>
+    </div>
+
+    <!-- ===== TAB: UPLOAD ===== -->
+    <div class="tab-panel active" id="tab-upload">
+
+      <!-- Drop Zone -->
+      <div class="drop-zone" id="dropZone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+        <input type="file" id="fileInput" accept="video/*" onchange="handleFileSelect(event)" />
+        <div class="drop-icon">🎬</div>
+        <div class="drop-title">Drop your video here</div>
+        <p class="drop-sub">or click to browse files — up to 50GB</p>
+        <div class="drop-formats">
+          <span class="format-badge">MP4</span>
+          <span class="format-badge">MOV</span>
+          <span class="format-badge">AVI</span>
+          <span class="format-badge">MKV</span>
+          <span class="format-badge">WebM</span>
+          <span class="format-badge">WMV</span>
+          <span class="format-badge">FLV</span>
+          <span class="format-badge">3GP</span>
         </div>
-    </header>
-<header>
-Made by Mayank
-  </header>
+      </div>
 
-    <main class="container mx-auto px-4 py-8">
-        <!-- Live Match Section -->
-        <section class="mb-12">
-            <div class="flex items-center mb-6">
-                <h2 class="text-2xl font-bold text-white">Live Match</h2>
-                <div class="ml-4 flex items-center bg-red-600 px-3 py-1 rounded-full">
-                    <span class="live-indicator h-2 w-2 bg-white rounded-full mr-2"></span>
-                    <span class="text-sm font-medium">LIVE</span>
-                </div>
-            </div>
-            
-            <div class="bg-slate-800 rounded-xl overflow-hidden shadow-xl">
-                <div class="p-6 border-b border-slate-700">
-                    <div class="flex justify-between items-center mb-4">
-                        <div class="text-slate-400">Asia Cup • Final • R. Premadasa Stadium, Colombo</div>
-                        <div class="text-sm bg-slate-700 px-3 py-1 rounded">Day 1 • 38th Over</div>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-3 gap-8 items-center">
-                        <!-- Team 1 -->
-                        <div class="text-center">
-                            <div class="flex justify-center mb-4">
-                                <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=India%20Cricket%20Team%20Flag&id=india-flag" alt="India Cricket Team Flag" class="team-flag h-16 w-16">
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">India</h3>
-                            <div class="text-3xl font-bold text-white">240/4</div>
-                            <div class="text-slate-400 mt-2">38.0 Overs</div>
-                        </div>
-                        
-                        <!-- Match Status -->
-                        <div class="text-center">
-                            <div class="text-lg text-slate-300 mb-2">India won the toss & elected to bat</div>
-                            <div class="text-2xl font-bold text-green-500 mb-4">Current RR: 6.32</div>
-                            <div class="inline-block bg-slate-700 text-slate-300 px-4 py-2 rounded-lg">
-                                <span class="font-medium">Last Over:</span> 1 4 6 0 W 1
-                            </div>
-                        </div>
-                        
-                        <!-- Team 2 -->
-                        <div class="text-center">
-                            <div class="flex justify-center mb-4">
-                                <img src="https://placeholder-image-service.onrender.com/image/80x80?prompt=Sri%20Lanka%20Cricket%20Team%20Flag&id=sri-lanka-flag" alt="Sri Lanka Cricket Team Flag" class="team-flag h-16 w-16">
-                            </div>
-                            <h3 class="text-xl font-bold text-white mb-2">Sri Lanka</h3>
-                            <div class="text-3xl font-bold text-white">Yet to Bat</div>
-                            <div class="text-slate-400 mt-2">Target: 241</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-slate-900 p-4">
-                    <div class="flex justify-between items-center">
-                        <div class="text-slate-300">
-                            <span class="font-medium">Partnership:</span> 42(28)
-                        </div>
-                        <div class="text-slate-300">
-                            <span class="font-medium">Last Wicket:</span> Kohli 57(44)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <!-- Selected File Preview -->
+      <div class="file-selected" id="fileSelected">
+        <div class="file-thumb" id="fileThumb">🎬</div>
+        <div class="file-info">
+          <div class="file-name" id="fileName">video.mp4</div>
+          <div class="file-size" id="fileSize">0 MB</div>
+        </div>
+        <button class="file-remove" onclick="removeFile()" title="Remove file">✕</button>
+      </div>
 
-        <div class="grid lg:grid-cols-3 gap-8 mb-12">
-            <!-- Current Batters -->
-            <div class="stat-card p-6">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
-                    <i class="fas fa-user mr-2 text-blue-400"></i>Current Batters
-                </h3>
-                
-                <div class="space-y-4">
-                    <div class="player-card p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
-                                    <span class="font-bold">KL</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">K.L. Rahul</div>
-                                    <div class="text-sm text-slate-400">72 (62)</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-green-500 font-medium">116.1 SR</div>
-                                <div class="text-sm text-slate-400">4s: 6, 6s: 3</div>
-                            </div>
-                        </div>
-                        <div class="score-progress" style="width: 70%;"></div>
-                    </div>
-                    
-                    <div class="player-card p-4">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center">
-                                <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
-                                    <span class="font-bold">HP</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-white">H. Pandya</div>
-                                    <div class="text-sm text-slate-400">28 (19)</div>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-green-500 font-medium">147.4 SR</div>
-                                <div class="text-sm text-slate-400">4s: 2, 6s: 2</div>
-                            </div>
-                        </div>
-                        <div class="score-progress" style="width: 30%;"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Bowling -->
-            <div class="stat-card p-6">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
-                    <i class="fas fa-baseball-ball mr-2 text-blue-400"></i>Current Bowler
-                </h3>
-                
-                <div class="player-card p-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <div class="flex items-center">
-                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center mr-3">
-                                <span class="font-bold">DSh</span>
-                            </div>
-                            <div>
-                                <div class="font-medium text-white">D. Shanaka</div>
-                                <div class="text-sm text-slate-400">7.2-0-48-1</div>
-                            </div>
-                        </div>
-                        <div class="text-right">
-                            <div class="text-red-500 font-medium">6.55 Econ</div>
-                            <div class="text-sm text-slate-400">Current Over: 1 4 6</div>
-                        </div>
-                    </div>
-                    <div class="flex justify-between text-sm text-slate-400 mt-2">
-                        <span>0's: 12</span>
-                        <span>4's: 5</span>
-                        <span>6's: 3</span>
-                    </div>
-                </div>
-                
-                <div class="mt-6">
-                    <h4 class="text-sm font-medium text-slate-300 mb-2">Recent Overs</h4>
-                    <div class="flex space-x-2">
-                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">7.3</div>
-                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">8.2</div>
-                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">9.6</div>
-                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">10.4</div>
-                        <div class="bg-slate-700 text-slate-300 text-xs px-3 py-1 rounded">11.3</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Required Run Rate -->
-            <div class="stat-card p-6">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center">
-                    <i class="fas fa-chart-line mr-2 text-blue-400"></i>Run Rate Chart
-                </h3>
-                
-                <div class="bg-slate-700 rounded-lg p-4 mb-4">
-                    <div class="flex justify-between items-center mb-2">
-                        <div class="text-slate-300">Current RR</div>
-                        <div class="text-green-500 font-medium">6.32</div>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="text-slate-300">Required RR</div>
-                        <div class="text-red-500 font-medium">7.85</div>
-                    </div>
-                </div>
-                
-                <canvas id="runRateChart" height="150"></canvas>
-            </div>
+      <!-- Video Details Form -->
+      <div class="video-form" id="videoForm">
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Video Title <span>*</span></label>
+            <input type="text" class="form-input" id="videoTitle" placeholder="Enter an engaging title..." maxlength="100" oninput="updateCharCount(this, 'titleCount', 100)" />
+            <div class="char-count"><span id="titleCount">0</span>/100</div>
+          </div>
         </div>
 
-        <!-- Mini Cricket Pitch -->
-        <div class="stat-card p-6 mb-12">
-            <h3 class="text-lg font-bold text-white mb-4 flex items-center">
-                <i class="fas fa-baseball-ball mr-2 text-blue-400"></i>Pitch Map
-            </h3>
-            
-            <div class="cricket-pitch mx-auto relative h-64 w-full max-w-2xl rounded-lg">
-                <!-- Pitch Lines -->
-                <div class="pitch-line w-full h-1 top-1/2 transform -translate-y-1/2"></div>
-                <div class="pitch-line h-full w-1 left-1/2 transform -translate-x-1/2"></div>
-                
-                <!-- Creases -->
-                <div class="crease w-24 h-6 top-1/2 transform -translate-y-1/2 -translate-x-24 left-1/2"></div>
-                <div class="crease w-24 h-6 top-1/2 transform -translate-y-1/2 translate-x-24 left-1/2"></div>
-                
-                <!-- Stumps -->
-                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-2"></div>
-                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2"></div>
-                <div class="stumps h-8 left-1/2 top-1/2 transform -translate-y-1/2 translate-x-2"></div>
-                
-                <!-- Ball markers -->
-                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 40%; left: 45%;"></div>
-                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 35%; left: 55%;"></div>
-                <div class="absolute w-3 h-3 bg-red-600 rounded-full" style="top: 60%; left: 50%;"></div>
-            </div>
-            
-            <div class="mt-4 text-center text-slate-400 text-sm">
-                Ball-by-ball tracking showing recent deliveries
-            </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="videoDesc" placeholder="Describe your video... (supports links, hashtags)" maxlength="5000" rows="4" oninput="updateCharCount(this, 'descCount', 5000)"></textarea>
+            <div class="char-count"><span id="descCount">0</span>/5000</div>
+          </div>
         </div>
 
-        <!-- Tournament Standings -->
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold text-white mb-6">Tournament Standings</h2>
-            
-            <div class="overflow-x-auto">
-                <table class="w-full table-auto">
-                    <thead class="bg-slate-800 text-left">
-                        <tr>
-                            <th class="px-6 py-3 text-slate-300">Team</th>
-                            <th class="px-6 py-3 text-slate-300">P</th>
-                            <th class="px-6 py-3 text-slate-300">W</th>
-                            <th class="px-6 py-3 text-slate-300">L</th>
-                            <th class="px-6 py-3 text-slate-300">NR</th>
-                            <th class="px-6 py-3 text-slate-300">Pts</th>
-                            <th class="px-6 py-3 text-slate-300">NRR</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-slate-700 bg-slate-800/50">
-                            <td class="px-6 py-4 flex items-center">
-                                <img src="https://placeholder-image-service.onrender.com/image/30x30
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="videoCategory">
+              <option value="22">People & Blogs</option>
+              <option value="1">Film & Animation</option>
+              <option value="2">Autos & Vehicles</option>
+              <option value="10">Music</option>
+              <option value="15">Pets & Animals</option>
+              <option value="17">Sports</option>
+              <option value="19">Travel & Events</option>
+              <option value="20">Gaming</option>
+              <option value="23">Comedy</option>
+              <option value="24">Entertainment</option>
+              <option value="25">News & Politics</option>
+              <option value="26">Howto & Style</option>
+              <option value="27">Education</option>
+              <option value="28">Science & Technology</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Language</label>
+            <select class="form-select" id="videoLanguage">
+              <option value="en">English</option>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+              <option value="pt">Portuguese</option>
+              <option value="ja">Japanese</option>
+              <option value="ko">Korean</option>
+              <option value="zh">Chinese</option>
+              <option value="ar">Arabic</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Tags</label>
+            <div class="tags-input-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()">
+              <input type="text" id="tagInput" placeholder="Type a tag and press Enter..." onkeydown="handleTagInput(event)" />
+            </div>
+            <div class="char-count">Press Enter or comma to add tags</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Visibility</label>
+            <div class="visibility-options">
+              <button class="vis-btn active" onclick="setVisibility('public', this)">🌍 Public</button>
+              <button class="vis-btn" onclick="setVisibility('unlisted', this)">🔗 Unlisted</button>
+              <button class="vis-btn" onclick="setVisibility('private', this)">🔒 Private</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Custom Thumbnail <span style="color:var(--gray); font-weight:400;">(optional, JPG/PNG max 2MB)</span></label>
+            <div class="thumb-upload" id="thumbUpload">
+              <input type="file" id="thumbInput" accept="image/jpeg,image/png,image/webp" onchange="handleThumbSelect(event)" />
+              <span style="font-size:1.5rem;">🖼️</span>
+              <div class="thumb-upload-text">
+                <strong id="thumbText">Upload Thumbnail</strong>
+                Click to browse or drag image here
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Made for Kids -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Audience</label>
+            <select class="form-select" id="madeForKids">
+              <option value="false">Not made for kids</option>
+              <option value="true">Made for kids</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">License</label>
+            <select class="form-select" id="videoLicense">
+              <option value="youtube">Standard YouTube License</option>
+              <option value="creativeCommon">Creative Commons</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-header">
+            <span class="progress-status" id="progressStatus">Uploading…</span>
+            <span class="progress-pct" id="progressPct">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-steps">
+            <div class="progress-step active" id="step-auth">
+              <div class="progress-step-dot"></div> Authenticating
+            </div>
+            <div class="progress-step" id="step-upload">
+              <div class="progress-step-dot"></div> Uploading
+            </div>
+            <div class="progress-step" id="step-process">
+              <div class="progress-step-dot"></div> Processing
+            </div>
+            <div class="progress-step" id="step-publish">
+              <div class="progress-step-dot"></div> Publishing
+            </div>
+          </div>
+        </div>
+
+        <!-- Success State -->
+        <div class="upload-success" id="uploadSuccess">
+          <div class="success-icon">✅</div>
+          <div class="success-title">Video Published!</div>
+          <p class="success-sub">Your video is now live on YouTube and processing for all qualities.</p>
+          <a class="success-link" id="successLink" href="#" target="_blank">
+            ▶ View on YouTube →
+          </a>
+          <button class="btn btn-ghost" onclick="resetUpload()" style="margin-top:8px;">Upload Another Video</button>
+        </div>
+
+        <!-- Submit -->
+        <div class="upload-submit-area" id="submitArea">
+          <div class="upload-note">
+            🔒 Uploads go directly to YouTube via their official API
+          </div>
+          <button class="btn-upload" id="uploadBtn" onclick="startUpload()" disabled>
+            ⬆ Upload to YouTube
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: FROM URL ===== -->
+    <div class="tab-panel" id="tab-url">
+      <div style="padding: 12px 0;">
+        <p style="color: var(--gray-light); font-size: 0.9rem; margin-bottom: 24px;">
+          Paste a direct video URL (e.g. from your server, Dropbox, Google Drive) and we'll fetch and upload it to YouTube.
+        </p>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Video URL <span>*</span></label>
+          <input type="url" class="form-input" id="videoUrlInput" placeholder="https://example.com/video.mp4" oninput="validateUrl(this)" />
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Video Title <span>*</span></label>
+          <input type="text" class="form-input" id="urlVideoTitle" placeholder="My Awesome Video" />
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" id="urlVideoDesc" placeholder="Video description..."></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 28px;">
+          <label class="form-label">Visibility</label>
+          <div class="visibility-options">
+            <button class="vis-btn active" onclick="setVisibility('public', this, 'url')">🌍 Public</button>
+            <button class="vis-btn" onclick="setVisibility('unlisted', this, 'url')">🔗 Unlisted</button>
+            <button class="vis-btn" onclick="setVisibility('private', this, 'url')">🔒 Private</button>
+          </div>
+        </div>
+        <div class="upload-submit-area">
+          <div class="upload-note">🔒 Fetches and uploads via YouTube API</div>
+          <button class="btn-upload" onclick="startUrlUpload()">⬆ Fetch & Upload</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TAB: SCHEDULE ===== -->
+    <div class="tab-panel" id="tab-schedule">
+      <div style="padding: 12px 0;">
+        <p style="color: var(--gray-light); font-size: 0.9rem; margin-bottom: 24px;">
+          Schedule your video uploads for the perfect time. Drop a video and choose when it goes live.
+        </p>
+        <div class="drop-zone" id="dropZoneSchedule" style="margin-bottom: 20px;" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDropSchedule(event)">
+          <input type="file" id="fileInputSchedule" accept="video/*" onchange="handleScheduleFileSelect(event)" />
+          <div class="drop-icon">📅</div>
+          <div class="drop-title">Drop video to schedule</div>
+          <p class="drop-sub">or click to browse files</p>
+        </div>
+        <div class="file-selected" id="fileSelectedSchedule">
+          <div class="file-thumb">🎬</div>
+          <div class="file-info">
+            <div class="file-name" id="fileNameSchedule">video.mp4</div>
+            <div class="file-size" id="fileSizeSchedule">0 MB</div>
+          </div>
+          <button class="file-remove" onclick="removeScheduleFile()">✕</button>
+        </div>
+        <div class="form-group" style="margin-bottom: 20px; margin-top: 20px;">
+          <label class="form-label">Video Title <span>*</span></label>
+          <input type="text" class="form-input" id="scheduleTitle" placeholder="Scheduled Video Title" />
+        </div>
+        <div class="schedule-row" style="margin-bottom: 20px;">
+          <div class="form-group">
+            <label class="form-label">Publish Date <span>*</span></label>
+            <input type="date" class="form-input" id="scheduleDate" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Publish Time <span>*</span></label>
+            <input type="time" class="form-input" id="scheduleTime" />
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Timezone</label>
+          <select class="form-select" id="scheduleTimezone">
+            <option value="UTC">UTC</option>
+            <option value="America/New_York">Eastern Time (ET)</option>
+            <option value="America/Chicago">Central Time (CT)</option>
+            <option value="America/Denver">Mountain Time (MT)</option>
+            <option value="America/Los_Angeles">Pacific Time (PT)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Europe/Paris">Paris (CET)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <option value="Asia/Dubai">Dubai (GST)</option>
+          </select>
+        </div>
+        <div class="upload-submit-area">
+          <div class="upload-note">📅 Will publish at the selected date & time</div>
+          <button class="btn-upload" onclick="scheduleUpload()">📅 Schedule Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section fade-in" id="features">
+  <div class="section-tag">Why TubeUpload</div>
+  <h2 class="section-title">Everything You Need</h2>
+  <p class="section-sub">Purpose-built for creators who just want to upload — fast, clean, and reliable.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔑</div>
+      <div class="feature-title">OAuth 2.0 Secure Auth</div>
+      <p class="feature-desc">Connect your YouTube channel securely via Google OAuth 2.0. We never store your password or credentials.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Resumable Uploads</div>
+      <p class="feature-desc">Upload large files reliably with YouTube's resumable upload API. Network drops? We pick up right where you left off.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <div class="feature-title">Smart Scheduling</div>
+      <p class="feature-desc">Schedule your video to go public at exactly the right time. Set date, time, and timezone for peak audience reach.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🖼️</div>
+      <div class="feature-title">Custom Thumbnails</div>
+      <p class="feature-desc">Upload custom thumbnails right from the uploader. Stand out in search results and suggested videos.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏷️</div>
+      <div class="feature-title">Tags & Metadata</div>
+      <p class="feature-desc">Add titles, descriptions, categories, tags, language, and license info — all the metadata YouTube needs for discovery.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">👁️</div>
+      <div class="feature-title">Visibility Controls</div>
+      <p class="feature-desc">Choose Public, Unlisted, or Private before uploading. Change anytime directly from YouTube Studio.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎬</div>
+      <div class="feature-title">All Major Formats</div>
+      <p class="feature-desc">Supports MP4, MOV, AVI, MKV, WebM, WMV, FLV, 3GP, and more — up to 50GB per file, up to 4K resolution.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Real-Time Progress</div>
+      <p class="feature-desc">Track upload progress in real time with step-by-step status from authentication to publishing.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔗</div>
+      <div class="feature-title">URL Import</div>
+      <p class="feature-desc">Have a video hosted online? Paste the URL and we'll fetch it and upload it to YouTube — no downloading required.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTH MODAL ===== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">
+      <div class="icon">▶</div>
+      Tube<span style="color:var(--red)">Upload</span>
+    </div>
+    <h2 id="modalTitle">Create your account</h2>
+    <p class="modal-sub" id="modalSub">Join thousands of creators uploading smarter.</p>
+
+    <!-- Google Sign-In -->
+    <button class="google-btn" onclick="handleGoogleAuth()">
+      <svg class="google-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google (YouTube Access)
+    </button>
+
+    <div class="divider">or with email</div>
+
+    <div class="modal-form">
+      <input type="email" class="modal-input" placeholder="Email address" id="authEmail" />
+      <input type="password" class="modal-input" placeholder="Password" id="authPassword" />
+      <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 14px;" id="authSubmitBtn" onclick="handleEmailAuth()">
+        Create Account
+      </button>
+    </div>
+
+    <div class="modal-footer" id="modalFooter">
+      Already have an account? <a href="#" onclick="switchAuthMode()">Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="margin-bottom: 14px;">
+        <div class="icon" style="width:30px;height:30px;font-size:0.8rem;">▶</div>
+        Tube<span>Upload</span>
+      </div>
+      <p>The fastest, cleanest way to upload videos directly to YouTube. Built for creators who value their time.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#upload">Upload</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 TubeUpload. All rights reserved.</span>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
